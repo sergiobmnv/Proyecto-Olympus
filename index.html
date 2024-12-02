@@ -6,12 +6,39 @@
     <title>Pegasus Game</title>
     
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <link rel="icon" type="image/png" href="Assets/Icono-Pegasus.png">
+    <link rel="icon" type="image/png" href="Assets/Icono-Pegaso.png">
 
     
 </head>
 <body>
-
+    <div id="game-container">
+        <!-- Fondo del juego -->
+        <img src="Assets/Leonardo_Phoenix.jpg" id="background" alt="Fondo">
+    
+        <!-- Pegaso (Gif animado) -->
+        <img src="Assets/Gil-Pegaso-2-sinFondo.gif" id="pegaso" alt="Pegaso animado">
+    
+        <!-- Marcador del multiplicador -->
+        <div id="multiplier">1.00x</div>
+    
+        <!-- Panel de control -->
+        <div id="controls">
+          <div id="bet">
+            <label>Apuesta: </label>
+            <button id="decrease-bet">-</button>
+            <span id="current-bet">10</span> €
+            <button id="increase-bet">+</button>
+          </div>
+          <button id="start-button">Iniciar</button>
+          <button id="stop-button" disabled>Retirar</button>
+        </div>
+    
+        <!-- Historial de rondas -->
+        <div id="history">
+          <h3>Historial</h3>
+          <ul id="round-history"></ul>
+        </div>
+      </div>
 
     <script src='index.js'></script>
 </body>
