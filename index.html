@@ -8,10 +8,44 @@
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <link rel="icon" type="image/png" href="Assets/Icono-Pegaso.png">
 
-    
 </head>
 <body>
- 
+    
+    <header>
+        <div class="logo">
+          <img src="Assets/Logo.png" alt="Logo del Casino">
+        </div>
+
+        <div class="titulo">
+          <p class="p1">Tempest Gale</p>
+        </div>
+
+        <div class="botones">
+          <button class="btn depositar" id="depositarBtn">Depositar</button>
+          <button class="btn retirar" id="retirarBtn">Retirar</button>
+        </div>
+    </header>
+
+      <main>
+        <div class="contenedor-juego">
+
+          <div class="multiplicador">
+            <h2 id="valorMultiplicador">1.00x</h2>
+          </div>
+
+          <div class="game-area">
+            <img id="pegaso" src="Assets/Pegaso.gif" alt="Pegaso" class="pegaso-gif">
+          </div>
+
+        </div>
+      </main>
+  
+      <footer>
+          <div class="jugar">
+            <button id="startBtn">Jugar</button>
+            <button id="stopBtn" disabled>Parar</button>
+          </div>
+      </footer>
 
     <script src='index.js'></script>
 </body>
