@@ -276,3 +276,7 @@ confirmarRetiroBtn.addEventListener('click', () => {
   actualizarSaldo();
   retiroModal.style.display = 'none'; // Cerramos el modal
 });
+
+/*----------------------------------------------------------------------------------------------------*/
+  /*Funcion para controlar el saldo si es superior de 100*/
+  
