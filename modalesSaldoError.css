@@ -1,0 +1,68 @@
+/* Estilo general para los modales específicos (Depósito) */
+.modal-deposito {
+    display: none; /* Ocultos por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro para dar enfoque */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+  }
+  
+  /* Contenedor interno del modal de error de depósito */
+  .modal-content-deposito {
+    background-color: #333;
+    color: #ff4d4d; /* Rojo */
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(255, 69, 0, 0.5); /* Sombra brillante */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Contenedor interno del modal de éxito de depósito */
+  .modal-content-deposito {
+    background-color: #333;
+    color: #00ff7f; /* Verde */
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 255, 127, 0.5); /* Sombra brillante */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Botones de cerrar el modal */
+  .close-deposito {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+  }
+  
+  .close-deposito:hover {
+    color: #ffd700;
+  }
+  
+  /* Títulos de los modales */
+  .modal-content-deposito h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Párrafos dentro de los modales */
+  .modal-content-deposito p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  

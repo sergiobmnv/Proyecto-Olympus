@@ -21,7 +21,6 @@
     border-radius: 12px;
     width: 90%;
     max-width: 400px;
-    height: 250px;
     text-align: center;
     box-shadow: 0 8px 16px rgba(0, 255, 127, 0.5); /* Sombra brillante */
     font-family: 'Arial', sans-serif;
@@ -30,18 +29,17 @@
 
 /* Contenedor interno del modal de retiro */
 .modal-content-retiro {
-    background: radial-gradient(circle, #330000, #1a0000);
-    color: #ff4500;
+    background: radial-gradient(circle, #330000, #1a0000); /* Rojo oscuro */
+    color: #ff4500; /* Rojo brillante */
     margin: 10% auto;
     padding: 20px;
     border-radius: 12px;
     width: 90%;
     max-width: 400px;
-    height: 250px;
     text-align: center;
-    box-shadow: 0 8px 16px rgba(255, 69, 0, 0.5);
+    box-shadow: 0 8px 16px rgba(255, 69, 0, 0.5); /* Sombra brillante */
     font-family: 'Arial', sans-serif;
-    border: 2px solid #ff4500;
+    border: 2px solid #ff4500; /* Borde rojo brillante */
 }
 
 /* Botones de cerrar el modal */
@@ -56,7 +54,7 @@
 
 .close:hover,
 .close-retirar:hover {
-    color: #ffd700;
+    color: #ffd700; /* Dorado al pasar el cursor */
 }
 
 /* Títulos de los modales */
@@ -74,7 +72,7 @@
     display: block;
     font-size: 16px;
     margin: 10px 0 5px;
-    
+    color: #fff;
 }
 
 .modal-content-depositar input,
@@ -83,10 +81,10 @@
     padding: 10px;
     font-size: 16px;
     margin: 10px 0;
-    border: 1px solid currentColor;
+    border: 1px solid currentColor; /* Hereda color de borde del contexto */
     border-radius: 5px;
     background-color: #333;
-    color: inherit;
+    color: inherit; /* Hereda el color del texto del contenedor */
 }
 
 .modal-content-depositar input::placeholder,
@@ -97,6 +95,8 @@
 /* Botones de confirmar */
 .modal-content-depositar button,
 .modal-content-retiro button {
+    background-color: currentColor; /* Hereda color del texto del contenedor */
+    color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -108,11 +108,11 @@
 }
 
 .modal-content-depositar button:hover {
-    background-color: #00cc66;
-    box-shadow: 0 4px 10px rgba(0, 204, 102, 0.5);
+    background-color: #00cc66; /* Verde más oscuro */
+    box-shadow: 0 4px 10px rgba(0, 204, 102, 0.5); /* Brillo en hover */
 }
 
 .modal-content-retiro button:hover {
-    background-color: #cc3300;
-    box-shadow: 0 4px 10px rgba(204, 51, 0, 0.5);
+    background-color: #cc3300; /* Rojo más oscuro */
+    box-shadow: 0 4px 10px rgba(204, 51, 0, 0.5); /* Brillo en hover */
 }

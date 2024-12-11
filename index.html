@@ -7,6 +7,7 @@
     
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='modalBotonesHeader.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='modalesSaldoError.css'>
     <link rel="icon" type="image/png" href="Assets/Icono-Pegaso.png">
 
 </head>
@@ -18,7 +19,11 @@
         </div>
 
         <div class="titulo">
-          <p class="p1">Tempest Gale</p>
+          <p class="p1">Olympus Game</p>
+        </div>
+
+        <div class="saldo">
+          <p id="saldo">Saldo: 0.0 €</p> 
         </div>
 
         <div class="botones">
@@ -62,34 +67,79 @@
             </div>
       
             <div class="buttons">
-              <button id="autoPlayBtn" class="btn">Jugar Automático</button>
               <button id="startBtn" class="btn">Jugar</button>
               <button id="stopBtn" class="btn">Parar</button>
             </div>
           </div>
+
         </div>
       </footer>
 
-    <!--Seccion para los modales-->
-      <!-- Modal ingresar y retirar -->
-      <div class="modal-depositar modal">
-        <div class="modal-content-depositar">
-            <span class="close">&times;</span>
-            <h2>Depositar</h2>
-            <input type="number" placeholder="Cantidad a depositar" />
-            <button>Confirmar</button>
-        </div>
+
+  <!-- Seccion para los modales de la pagina -->
+            <!-- Ingresar -->
+        <div id="depositoModal" class="modal-depositar">
+          <div class="modal-content-depositar">
+              <span class="close">&times;</span>
+              <h2>Depósito</h2>
+              <label for="cantidadDeposito">Ingresa la cantidad a depositar:</label>
+              <input type="number" id="cantidadDeposito" min="1" placeholder="Cantidad">
+              <button id="confirmarDeposito">Confirmar</button>
+          </div>
+      </div>
+
+      <!-- Retirar -->
+    <div id="retiroModal" class="modal-retiro">
+      <div class="modal-content-retiro">
+          <span class="close-retirar">&times;</span>
+          <h2>Retiro</h2>
+          <label for="cantidadRetiro">Ingresa la cantidad a retirar:</label>
+          <input type="number" id="cantidadRetiro" min="1" placeholder="Cantidad">
+          <button id="confirmarRetiro">Confirmar</button>
+      </div>
     </div>
-    
-    <div class="modal-retiro modal">
-        <div class="modal-content-retiro">
-            <span class="close-retirar">&times;</span>
-            <h2>Retirar</h2>
-            <input type="number" placeholder="Cantidad a retirar" />
-            <button>Confirmar</button>
-        </div>
+
+    <!-- Modal de Error de Retiro -->
+    <div id="modalErrorRetiro" class="modal-retiro">
+      <div class="modal-content-retiro">
+          <span class="close-retirar">&times;</span>
+          <h2>Error</h2>
+          <p id="mensajeErrorRetiro"></p>
+      </div>
     </div>
-    
+
+    <!-- Modal de Error de Depósito -->
+    <div id="modalErrorDeposito" class="modal-deposito">
+      <div class="modal-content-deposito">
+          <span class="close-deposito">&times;</span>
+          <h2>Error</h2>
+          <p id="mensajeErrorDeposito"></p>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmación de Depósito Exitoso -->
+    <div id="modalExitoDeposito" class="modal-deposito">
+      <div class="modal-content-deposito">
+          <span class="close-deposito">&times;</span>
+          <h2>Depósito Realizado</h2>
+          <p>Tu depósito se ha realizado con éxito.</p>
+      </div>
+    </div>
+
+                <!-- Modal de Premio con GIF -->
+    <div id="modalPremio" class="modal-premio">
+      <div class="modal-content-premio">
+        <span class="close-premio">&times;</span>
+        <!-- GIF del premio -->
+        <img id="gifPremio" src="Assets/Gif-Premio.gif" alt="Premio ganado" style="width: 100%; max-width: 300px;">
+        <h2>¡Felicidades!</h2>
+        <p id="mensajePremio">¡Has ganado!</p>
+        <p id="detallesPremio">Multiplicador: <span id="multiplicadorPremio">1.00x</span></p>
+        <p id="totalGanado">Total Ganado: $<span id="premioTotal">0.00</span></p>
+      </div>
+    </div>
+
+
 
     <script src='index.js'></script>
 </body>

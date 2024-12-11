@@ -17,7 +17,7 @@ html, body {
   width: 100vw;
   overflow: hidden; /* Evita barras de desplazamiento */
 }
-
+/*-----------------------------------------------------------------------------------------------*/
 /* Header */
 header {
   background-color: #222;
@@ -43,29 +43,40 @@ header .titulo {
 }
 
 header .titulo .p1 {
-  color: #ffffff;
-  font-size: 18px;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  background: radial-gradient(circle at center, #2561ef, #05a3b5);
+  color: #333333;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #10cf10, #0099ff);
+  color: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  padding: 15px 20px;
-  border: 2px solid #1cffd5;
-  border-radius: 12px;
+  text-shadow: 0 2px 4px rgba(255, 78, 80, 0.2);
+  padding: 10px 15px;
+  border: 1px solid #0099ff;
+  border-radius: 8px;
   display: inline-block;
+  transition: all 0.3s ease;
 }
 
 header .titulo .p1:hover {
-  transform: scale(1.1);
+  transform: translateY(-3px);
+  text-shadow: 0 4px 8px rgba(2, 214, 41, 0.4);
+}
+
+/* Estilo para mostrar el saldo */
+header .saldo {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 5%;
 }
 
 header .botones {
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 
 header .botones .btn {
@@ -94,6 +105,8 @@ header .retirar:hover {
   background-color: #e53935;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
+
 main {
   width: 100%;
   height: calc(100vh - 120px);
@@ -106,7 +119,8 @@ main {
 .contenedor-juego {
   background-image: url('Assets/Fondo-6.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-position: center;
   width: 100%;
   height: 100%;
   display: flex;
@@ -115,6 +129,7 @@ main {
   justify-content: center;
   position: relative;
   padding: 20px;
+  
 }
 
 .multiplicador {
@@ -122,16 +137,27 @@ main {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 30px;
-  color: #fff;
+  font-size: 40px; /* Aumento del tamaño de la fuente */
+  color: #0099ff;
+  font-weight: bold; /* Hacer el texto más grueso */
+  text-shadow: 0 0 10px rgba(223, 48, 246, 0.6), 0 0 20px rgba(223, 48, 246, 0.6); /* Efecto de sombra brillante */
+  letter-spacing: 2px; /* Espaciado entre las letras */
+  animation: pulsar 1.5s infinite alternate; /* Animación de pulsado */
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: scale(1);
+/* Animación de pulsado */
+@keyframes pulsar {
+  0% {
+    transform: translateX(-50%) scale(1);
+    color: #0a578b;
   }
   50% {
-    transform: scale(1.2);
+    transform: translateX(-50%) scale(1.2); /* Aumenta el tamaño ligeramente */
+    color: #00ccff;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    color: #0099ff;
   }
 }
 
@@ -144,7 +170,7 @@ main {
 #pegaso {
   position: absolute;
   bottom: 20px; /* Ajusta la distancia entre el Pegaso y el footer */
-  transform: translateX(-50%); /* Asegura que esté centrado */
+  transform: translateX(-5%); /* Asegura que esté centrado */
   width: 200px;
   height: 100px;
   transition: left 10s linear; /* Animación de movimiento de izquierda a derecha */
@@ -223,7 +249,7 @@ footer {
   border: none;
   color: #1e1e2f;
   padding: 10px 15px;
-  font-size: 10px;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
@@ -237,4 +263,105 @@ footer {
 .buttons button:disabled {
   background-color: #666;
   cursor: not-allowed;
+}
+
+
+/*----------------------------------------------------------------------*/
+    /*ESTILOS PARA EL MODAL DEL PREMIO*/
+
+    /* Estilos para el Modal de Premio */
+.modal-premio {
+  display: none; /* Ocultar el modal por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+}
+
+/* Animación de entrada para el modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilo para el contenido del modal */
+.modal-premio .modal-content-premio {
+  background-color: #1c1c1c; /* Fondo oscuro con un toque más moderno */
+  padding: 30px;
+  border-radius: 15px; /* Bordes más redondeados */
+  text-align: center;
+  width: 500px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+  animation: zoomIn 0.5s ease-out; /* Animación de zoom al aparecer */
+}
+
+/* Animación de zoom para el contenido */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Estilo del botón de cerrar */
+.modal-premio .close-premio {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.modal-premio .close-premio:hover {
+  transform: scale(1.2); /* Efecto de hover para el botón de cerrar */
+}
+
+/* Ajuste del GIF de premio */
+.modal-premio #gifPremio {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px; /* Bordes redondeados para el GIF */
+  margin-bottom: 20px;
+}
+
+/* Estilos para el texto dentro del modal */
+.modal-premio h2 {
+  color: #ffd700; /* Color dorado para el título */
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.modal-premio #mensajePremio {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.modal-premio #detallesPremio {
+  color: #ddd;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.modal-premio #totalGanado {
+  color: #28a745; /* Verde para el total ganado */
+  font-size: 20px;
+  font-weight: bold;
 }
