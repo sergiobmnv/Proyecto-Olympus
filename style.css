@@ -5,17 +5,17 @@
   box-sizing: border-box;
 }
 
-/* Estilos globales */
-body {
+
+html, body {
   font-family: Arial, sans-serif;
-  background-color: #2a2a2a; /* Color de fondo oscuro */
+  background-color: #2a2a2a;
   color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Evita barras de desplazamiento */
 }
 
 /* Header */
@@ -28,8 +28,6 @@ header {
   align-items: center;
   padding: 10px 20px;
   box-sizing: border-box;
-  position: relative;
-  margin-bottom: 20px;
 }
 
 header .logo img {
@@ -39,59 +37,84 @@ header .logo img {
   border: 2px solid #0099ff;
 }
 
-header .titulo .p1 {
-  color: #0099ff;
-  font-size: 30px;
-  font-family: 'Cursive', sans-serif;
-  font-weight: bold;
+header .titulo {
+  flex: 1;
   text-align: center;
-  
+}
+
+header .titulo .p1 {
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: radial-gradient(circle at center, #2561ef, #05a3b5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 15px 20px;
+  border: 2px solid #1cffd5;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+header .titulo .p1:hover {
+  transform: scale(1.1);
 }
 
 header .botones {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 
 header .botones .btn {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  font-size: 14px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 
-header .botones .btn:hover {
-  background-color: #2980b9;
+header .depositar {
+  background-color: #4caf50;
+  color: white;
 }
 
-header .botones .btn:active {
-  background-color: #1c6ba0;
+header .retirar {
+  background-color: #f44336;
+  color: white;
 }
 
-/* Main section */
+header .depositar:hover {
+  background-color: #45a049;
+}
+
+header .retirar:hover {
+  background-color: #e53935;
+}
+
 main {
   width: 100%;
+  height: calc(100vh - 120px);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  position: relative;
 }
 
 .contenedor-juego {
-  position: relative;
-  width: 80%;
-  height: 400px;
-  background: linear-gradient(45deg, #f39c12, #e67e22);
-  border-radius: 10px;
-  padding: 20px;
+  background-image: url('Assets/Fondo-6.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 20px;
 }
 
 .multiplicador {
@@ -103,21 +126,30 @@ main {
   color: #fff;
 }
 
-/* Área de juego donde corre el Pegaso */
-.game-area {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.multiplicador-animado {
+  display: inline-block;
+  animation: bounce 0.5s infinite;
 }
 
 /* Estilos del Pegaso */
-.pegaso-gif {
+#pegaso {
   position: absolute;
-  bottom: 0;
-  left: -200px; /* El Pegaso empieza fuera de la pantalla */
-  width: 100px;
-  transition: left 5s linear; /* Movimiento de izquierda a derecha */
+  bottom: 20px; /* Ajusta la distancia entre el Pegaso y el footer */
+  transform: translateX(-50%); /* Asegura que esté centrado */
+  width: 200px;
+  height: 100px;
+  transition: left 10s linear; /* Animación de movimiento de izquierda a derecha */
+  visibility: hidden; /* Inicialmente oculto */
+  z-index: 999; /* Para que se quede por encima de otros elementos */
 }
 
 /* Footer */
@@ -127,39 +159,82 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
-  position: relative;
-  bottom: 0;
-  margin-top: auto; /* Esto asegura que el footer quede al final */
+  position: relative; /* Para no interferir con el pegaso si se coloca fuera */
 }
 
-footer .jugar {
+/* General Styles */
+.game-footer {
+  background: #1e1e2f;
+  color: #fff;
+  padding: 20px 20px 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-footer .jugar button {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
+.game-footer h4 {
+  color: #ffcc00;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.multiplicadores-list {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.multiplicadores-list li {
   font-size: 16px;
+  background-color: #2a2a3f;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 250px;
+}
+
+.input-group input {
+  padding: 10px;
   border: none;
   border-radius: 5px;
+  font-size: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.buttons button {
+  background-color: #ffcc00;
+  border: none;
+  color: #1e1e2f;
+  padding: 10px 15px;
+  font-size: 10px;
+  border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
 }
 
-footer .jugar button:hover {
-  background-color: #2980b9;
+.buttons button:hover {
+  background-color: #e6b800;
 }
 
-footer .jugar button:disabled {
-  background-color: #bdc3c7;
+.buttons button:disabled {
+  background-color: #666;
   cursor: not-allowed;
-}
-
-/* Estilo de texto en el footer */
-footer p {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #bbb;
 }

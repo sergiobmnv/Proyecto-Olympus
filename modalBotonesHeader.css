@@ -1,0 +1,118 @@
+/* Estilo general para los modales */
+.modal-depositar,
+.modal-retiro {
+    display: none; /* Ocultos por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro para dar enfoque */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+}
+
+/* Contenedor interno del modal de depósito */
+.modal-content-depositar {
+    background: radial-gradient(circle, #003300, #001a00); /* Verde oscuro */
+    color: #00ff7f; /* Verde neón */
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    height: 250px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 255, 127, 0.5); /* Sombra brillante */
+    font-family: 'Arial', sans-serif;
+    border: 2px solid #00ff7f; /* Borde verde neón */
+}
+
+/* Contenedor interno del modal de retiro */
+.modal-content-retiro {
+    background: radial-gradient(circle, #330000, #1a0000);
+    color: #ff4500;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    height: 250px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(255, 69, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+    border: 2px solid #ff4500;
+}
+
+/* Botones de cerrar el modal */
+.close,
+.close-retirar {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+.close:hover,
+.close-retirar:hover {
+    color: #ffd700;
+}
+
+/* Títulos de los modales */
+.modal-content-depositar h2,
+.modal-content-retiro h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Etiquetas e inputs */
+.modal-content-depositar label,
+.modal-content-retiro label {
+    display: block;
+    font-size: 16px;
+    margin: 10px 0 5px;
+    
+}
+
+.modal-content-depositar input,
+.modal-content-retiro input {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    background-color: #333;
+    color: inherit;
+}
+
+.modal-content-depositar input::placeholder,
+.modal-content-retiro input::placeholder {
+    color: #aaa;
+}
+
+/* Botones de confirmar */
+.modal-content-depositar button,
+.modal-content-retiro button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content-depositar button:hover {
+    background-color: #00cc66;
+    box-shadow: 0 4px 10px rgba(0, 204, 102, 0.5);
+}
+
+.modal-content-retiro button:hover {
+    background-color: #cc3300;
+    box-shadow: 0 4px 10px rgba(204, 51, 0, 0.5);
+}
