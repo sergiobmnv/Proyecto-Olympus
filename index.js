@@ -140,7 +140,6 @@ function mostrarMensaje(texto, color = '#ff4d4d') {
   }, 3000);
 }
 
-
 /*-------------------------------------------------------------------------------------------------------- */
 // MODALES DE DEPOSITO, RETIRO.
 const depositoModal = document.getElementById('depositoModal');
