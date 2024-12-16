@@ -436,3 +436,75 @@ footer {
 .btn-close-game:hover {
   background-color: #a71d2a;
 }
+
+/*---------------------------------------------------------------------------------------------------------*/
+/* Estilos para el modal de derrota */
+.modal-derrota {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 9999; /* Por encima de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+
+.modal-derrota-contenido {
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: modalAparecer 0.3s ease-in-out;
+}
+
+.cerrar-modal-derrota {
+  color: #888;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cerrar-modal-derrota:hover,
+.cerrar-modal-derrota:focus {
+  color: #333;
+  text-decoration: none;
+}
+
+.titulo-modal-derrota {
+  color: #e74c3c;
+  font-size: 2em;
+  margin: 0 0 10px 0;
+}
+
+.mensaje-modal-derrota {
+  color: #555;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.gif-modal-derrota {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Animación de aparición del modal */
+@keyframes modalAparecer {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+

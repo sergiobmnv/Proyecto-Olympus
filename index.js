@@ -11,6 +11,20 @@ let isRunning = false;
 let gameInterval;
 let pegasusAnimationDuration = 10000; // Duración de la animación de movimiento (en milisegundos)
 
+// --- Nueva funcionalidad del meteorito ---
+let meteoritoCayo = false; // Estado del meteorito
+const probabilidadMeteorito = 0.05; // Probabilidad de caída del meteorito (5%)
+
+// Función para verificar si cae el meteorito
+function verificarMeteorito() {
+  return Math.random() < probabilidadMeteorito;
+}
+
+// Función para mostrar mensaje cuando cae el meteorito
+function mostrarMensajeMeteorito() {
+  mostrarModalDerrota();
+}
+
 // Función para actualizar el saldo en pantalla
 function actualizarSaldo() {
   saldoElemento.textContent = `Saldo: ${saldo.toFixed(2)}`; // Actualizamos el saldo en pantalla
@@ -37,17 +51,14 @@ function mostrarPremio(premio, multiplicador) {
   const multiplicadorPremio = document.getElementById('multiplicadorPremio');
   const premioTotal = document.getElementById('premioTotal');
   
-  // Actualizar el mensaje del premio
   mensajePremio.textContent = `¡Felicidades! Has ganado $${premio.toFixed(2)}.`;
-
-  // Actualizar el multiplicador y el total ganado
   multiplicadorPremio.textContent = `${multiplicador.toFixed(2)}x`;
   premioTotal.textContent = premio.toFixed(2);
 
-  modalPremio.style.display = 'flex'; // Mostrar el modal con el premio (con GIF)
+  modalPremio.style.display = 'flex'; // Mostrar el modal con el premio
 }
 
-// Cerrar el modal de premio cuando el usuario hace clic en la 'X' (close)
+// Cerrar el modal de premio
 const closeModalPremioBtn = document.querySelector('.close-premio');
 closeModalPremioBtn.addEventListener('click', () => {
   document.getElementById('modalPremio').style.display = 'none';
@@ -56,69 +67,69 @@ closeModalPremioBtn.addEventListener('click', () => {
 // Función para iniciar la carrera
 function startRace() {
   if (isRunning) return; // Si ya está corriendo, no hacer nada
-  if (!verificarSaldo()) return; // Verificar si hay saldo suficiente antes de comenzar
-  
+  if (!verificarSaldo()) return; // Verificar si hay saldo suficiente
+
   const apuesta = parseFloat(apuestaInput.value);
-  saldo -= apuesta; // Restamos la apuesta del saldo
-  actualizarSaldo(); // Actualizamos el saldo en pantalla
+  saldo -= apuesta; // Restamos la apuesta
+  actualizarSaldo();
 
   isRunning = true;
   stopBtn.disabled = false;
   startBtn.disabled = true;
-  multiplicador = 1.00; // Resetear el multiplicador
+  multiplicador = 1.00; // Reiniciar el multiplicador
   multiplicadorElement.textContent = `${multiplicador.toFixed(2)}x`;
 
-  // Hacer visible el Pegaso
-  pegaso.style.visibility = 'visible'; // Ahora será visible
+  meteoritoCayo = false; // Reiniciar el estado del meteorito
 
-  // Configurar posición inicial y transición para el movimiento
-  pegaso.style.transition = `left ${pegasusAnimationDuration / 1000}s linear`; // Animación suave
-  pegaso.style.left = '-200px'; // Comienza fuera de la pantalla (a la izquierda)
-  pegaso.style.bottom = '0'; // Aseguramos que esté justo sobre el footer
+  // Configurar la animación del Pegaso
+  pegaso.style.visibility = 'visible';
+  pegaso.style.transition = `left ${pegasusAnimationDuration / 1000}s linear`;
+  pegaso.style.left = '-200px';
+  pegaso.style.bottom = '0';
 
-  // Aumentar el multiplicador mientras el Pegaso se mueve
   let startTime = Date.now();
   gameInterval = setInterval(() => {
-    let elapsedTime = (Date.now() - startTime) / 1000; // Tiempo transcurrido en segundos
-    if (elapsedTime < pegasusAnimationDuration / 1000) {
-      multiplicador = 1.00 + (elapsedTime / (pegasusAnimationDuration / 1000)) * 10; // Aumentar el multiplicador
+    let elapsedTime = (Date.now() - startTime) / 1000;
+
+    // Verificar si cae el meteorito
+    if (verificarMeteorito() && !meteoritoCayo) {
+      meteoritoCayo = true;
+      mostrarMensajeMeteorito();
+      stopRace(true); // Detener el juego debido al meteorito
+    }
+
+    // Aumentar el multiplicador si no ha caído el meteorito
+    if (!meteoritoCayo) {
+      multiplicador = 1.00 + (elapsedTime / (pegasusAnimationDuration / 1000)) * 10;
       multiplicadorElement.textContent = `${multiplicador.toFixed(2)}x`;
-    } else {
-      clearInterval(gameInterval); // Detener el intervalo al finalizar el tiempo
     }
   }, 100);
 
-  // Iniciar el movimiento del Pegaso
   setTimeout(() => {
-    pegaso.style.left = '100%'; // Mover al lado derecho de la pantalla
+    pegaso.style.left = '100%'; // Movimiento del Pegaso
   }, 100);
 }
 
-// Función para detener el juego y reiniciar todo
-function stopRace() {
-  clearInterval(gameInterval); // Detener el intervalo de aumento de multiplicador
+// Función para detener el juego
+function stopRace(porMeteorito = false) {
+  clearInterval(gameInterval);
+  pegaso.style.transition = 'none';
+  pegaso.style.left = '-200px';
 
-  // Detener cualquier animación activa
-  pegaso.style.transition = 'none'; // Quitar la transición para reiniciar instantáneamente
-  pegaso.style.left = '-200px'; // Vuelve a la posición inicial fuera de pantalla
-  pegaso.style.bottom = '0'; // Asegura que esté sobre el footer
+  if (porMeteorito) {
+    // Si cae el meteorito, no se gana nada
+    multiplicador = 1.00;
+  } else {
+    const apuesta = parseFloat(apuestaInput.value);
+    const premio = apuesta * multiplicador;
+    saldo += premio;
+    mostrarPremio(premio, multiplicador);
+  }
 
-  // Calcular el premio
-  const apuesta = parseFloat(apuestaInput.value);
-  const premio = apuesta * multiplicador;
-
-  // Actualizar el saldo con el premio
-  saldo += premio;
   actualizarSaldo();
-
-  // Mostrar el modal de premio con el GIF, multiplicador y premio total
-  mostrarPremio(premio, multiplicador);
-
-  // Resetear el multiplicador
   multiplicador = 1.00;
   multiplicadorElement.textContent = `${multiplicador.toFixed(2)}x`;
 
-  // Reactivar/desactivar botones
   stopBtn.disabled = true;
   startBtn.disabled = false;
   isRunning = false;
@@ -126,7 +137,7 @@ function stopRace() {
 
 // Asignar eventos a los botones
 startBtn.addEventListener('click', startRace);
-stopBtn.addEventListener('click', stopRace);
+stopBtn.addEventListener('click', () => stopRace());
 
 // Función para mostrar mensajes de error
 function mostrarMensaje(texto, color = '#ff4d4d') {
@@ -275,6 +286,25 @@ confirmarRetiroBtn.addEventListener('click', () => {
   actualizarSaldo();
   retiroModal.style.display = 'none'; // Cerramos el modal
 });
-
 /*----------------------------------------------------------------------------------------------------*/
-  
+// Función para mostrar el modal de derrota
+function mostrarModalDerrota() {
+  const modalDerrota = document.getElementById('modalDerrotaUnico');
+  modalDerrota.style.display = 'flex'; // Mostrar el modal
+}
+
+// Función para cerrar el modal de derrota
+function cerrarModalDerrota() {
+  const modalDerrota = document.getElementById('modalDerrotaUnico');
+  modalDerrota.style.display = 'none'; // Ocultar el modal
+}
+
+// Cerrar el modal al hacer clic en la 'X' o fuera del modal
+document.querySelector('.cerrar-modal-derrota').addEventListener('click', cerrarModalDerrota);
+
+window.addEventListener('click', (event) => {
+  const modalDerrota = document.getElementById('modalDerrotaUnico');
+  if (event.target === modalDerrota) {
+    cerrarModalDerrota();
+  }
+});
