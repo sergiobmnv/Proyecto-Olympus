@@ -171,8 +171,8 @@ main {
   position: absolute;
   bottom: 20px; /* Ajusta la distancia entre el Pegaso y el footer */
   transform: translateX(-5%); /* Asegura que esté centrado */
-  width: 200px;
-  height: 100px;
+  width: 250px;
+  height: 150px;
   transition: left 10s linear; /* Animación de movimiento de izquierda a derecha */
   visibility: hidden; /* Inicialmente oculto */
   z-index: 999; /* Para que se quede por encima de otros elementos */
