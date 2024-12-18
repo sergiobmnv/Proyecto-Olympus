@@ -1,4 +1,4 @@
-# Proyecto-POlympus
+# Proyecto-Olympus
 # Olympus Game
 
 Olympus Game es un emocionante juego en línea inspirado en la mitología y diseñado para proporcionar entretenimiento dinámico e interactivo. Este proyecto está desarrollado utilizando tecnologías web modernas y se centra en ofrecer una experiencia visualmente atractiva y funcional.
