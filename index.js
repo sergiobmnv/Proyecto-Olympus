@@ -308,3 +308,39 @@ window.addEventListener('click', (event) => {
     cerrarModalDerrota();
   }
 });
+
+/*--------------------------------------------------------------------------------*/
+// URLs de las imágenes
+const imageUrls = [
+  'Assets/Fondo-6.jpg',
+  'Assets/gif-derrota.gif',
+  'Assets/Gif-Premio.gif',
+  'Assets/Pegaso.gif'
+];
+
+// Crear el Worker
+const worker = new Worker('Workers.js');
+
+// Enviar las URLs al Worker
+worker.postMessage(imageUrls);
+
+// Manejar los mensajes del Worker
+worker.onmessage = function (e) {
+  if (e.data.success) {
+      const container = document.getElementById('contenedor-juego');
+      e.data.images.forEach((imageUrl) => {
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = 'Loaded Image';
+          img.style.margin = '10px';
+          container.appendChild(img);
+      });
+  } else {
+      console.error('Error loading images:', e.data.error);
+  }
+};
+
+// Manejar errores en el Worker
+worker.onerror = function (e) {
+  console.error('Worker error:', e.message);
+};
